@@ -1,7 +1,13 @@
-const obj = {
-  a: 10,
-  b: 20,
+import Vimeo from '@vimeo/player';
+import throttle from 'lodash.throttle';
+
+const iframe = document.querySelector('iframe');
+const player = new Vimeo(iframe);
+const KEY_FORM = 'feedback-form-state';
+
+const onPlay = function (data) {
+  localStorage.setItem(KEY_FORM, JSON.stringify(data.seconds));
 };
 
-localStorage.setItem('a', JSON.stringify([1, 2, 3, 4, 5]));
-console.log(localStorage.getItem('a'));
+player.on('timeupdate', throttle(onPlay, 1000));
+player.setCurrentTime(localStorage.getItem(KEY_FORM));
