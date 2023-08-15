@@ -24,9 +24,10 @@ function onFormInput(event) {
 
 function onFormSubmit(event) {
   event.preventDefault();
+  if (!refs.email.value || !refs.message.value)
+    return console.log('Enter all data');
   console.log(localStorage.getItem(KEY_FORM));
   event.currentTarget.reset();
   objToLocalStorage = {};
-  // localStorage.clear();
   localStorage.removeItem(KEY_FORM);
 }
