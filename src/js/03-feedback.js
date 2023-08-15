@@ -7,7 +7,7 @@ const refs = {
 };
 
 const KEY_FORM = 'feedback-form-state';
-const objToLocalStorage = JSON.parse(localStorage.getItem(KEY_FORM)) ?? {};
+let objToLocalStorage = JSON.parse(localStorage.getItem(KEY_FORM)) ?? {};
 
 if (objToLocalStorage) {
   refs.email.value = objToLocalStorage.email || '';
